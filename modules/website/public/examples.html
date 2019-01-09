@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="theme-color" content="#000000">
+    <script src="/pay.js"></script>
+    <script>
+      window.localCallback = function () {
+        alert('Thank you for your contribution. Your transaction ID:\n\n'
+          + window.gatewayPaymentTXID
+        )
+      }
+    </script>
+    <title>Gateway</title>
+    <style>
+      body {
+        font-family: helvetica;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Gateway Payment Button Examples</h1>
+    <p>
+      This page shows some of the many use-cases for the payment button.
+      Some of these are, unfortunately, not implemented yet.
+    </p>
+    <p>
+      These are all possible with strictly the HTML button inject script usable
+      on any website. If the user uses our React component, things like
+      dynamically-generated buttons become possible.
+    </p>
+    <p>
+      All of the buttons on this page will allow you to contribute to the
+      Gateway project, except the one on the bottom, which won't generally work
+      unless you're running a local payment server.
+    </p>
+    <center>
+    <h2>Basic donation button to static address</h2>
+    <div
+      class="payButton"
+      address="bitcoincash:pz3txlyql9vc08px98v69a7700g6aecj5gc0q3xhng"
+      buttonText="Donate"
+      dialogTitle="Make a Donation"
+    ></div>
+
+    <h2>Fixed amount payable to static address</h2>
+    <div
+      class="payButton"
+      address="bitcoincash:pz3txlyql9vc08px98v69a7700g6aecj5gc0q3xhng"
+      amount="0.005"
+    ></div>
+
+    <h2>Pay 5 U.S. Dollars to a static address</h2>
+    <div
+      class="payButton"
+      address="bitcoincash:pz3txlyql9vc08px98v69a7700g6aecj5gc0q3xhng"
+      amount="5.00"
+      currency="USD"
+    ></div>
+
+    <h2>Pay 4 Euros to a static address</h2>
+    <div
+      class="payButton"
+      address="bitcoincash:pz3txlyql9vc08px98v69a7700g6aecj5gc0q3xhng"
+      amount="4.00"
+      currency="EUR"
+    ></div>
+
+    <h2>Pay 5 Euros to a merchant who uses XPUB derivation</h2>
+    <div
+      class="payButton"
+      xpub="xpub66whatever"
+      amount="5.00"
+      currency="EUR"
+    ></div>
+
+    <h2>Pay 0.1337 BCH to a merchant who uses BIP47 payment codes</h2>
+    <div
+      class="payButton"
+      paymentCode="whatever"
+      amount="0.1337"
+    ></div>
+
+    <h2>
+      Donation button for a Gateway merchant ID, with custom payment audio,
+      that automatically closes when complete and has a client-side callbackURL
+      function
+    </h2>
+    <div
+      class="payButton"
+      merchantID="ef0fcea08bfa9cb0"
+      paymentCompleteAudio="audio/ca-ching.wav"
+      closeWhenComplete="true"
+      paymentCompleteCallback="localCallback()"
+      buttonText="Donate to Gateway"
+      dialogTitle="Contribute to Gateway"
+    ></div>
+
+    <h2>
+      PayButton with no address text or wallet button for a static address
+    </h2>
+    <div class="payButton"
+      address="bitcoincash:pz3txlyql9vc08px98v69a7700g6aecj5gc0q3xhng"
+      hideWalletButton="yes"
+      hideAddressText="yes"
+      closeWhenComplete="yes"
+    ></div>
+
+    <h2>
+      Payment button for a Gateway merchant ID, with
+      invoice tracking and a callback URL, using a local Gateway instance
+      server located at http://127.0.0.1:8080
+    </h2>
+    <div
+      class="payButton"
+      merchantID="deadbeef20181111"
+      paymentID="32-2145684565-166545688-09"
+      callbackURL="https://example.com/callback.php"
+      gatewayServer="http://127.0.0.1:8080"
+    ></div>
+
+    <div id="example1"></div>
+    <div id="example2"></div>
+    </center>
+  </body>
+</html>

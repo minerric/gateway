@@ -1,25 +1,30 @@
 import React from 'react'
-import { Router, Redirect } from '@reach/router'
-import * as pages from 'pages'
+import { Router } from '@reach/router'
 
-let NotFound = () => (
-  <div>
-    <center>
-      <h1>Page not found</h1>
-      <p>
-        Check the URL and try again. If you believe this is an error, please
-        send an email to support@gateway.cash for assistance.
-      </p>
-    </center>
-  </div>
-)
+// import the top-level pages
+import {
+  Welcome,
+  NotFound
+} from './pages'
 
+// import the portal's pages
+import {
+  CreateButton,
+  Settings,
+  Payments,
+  Dashboard,
+  Portal
+} from './pages/portal'
+
+// render the website
 export default () => (
   <Router>
-    <Redirect from="/" to="start" noThrow />
-    {Object.entries(pages).map(([path, Page]) => (
-      <Page key={path} path={path.toLowerCase()} />
-    ))}
+    <Welcome key="Welcome" path="/" />
+    <Portal key="Portal" path="portal" />
+    <Dashboard key="Dashboard" path="portal/dashboard" />
+    <CreateButton key="CreateButton" path="portal/create" />
+    <Settings key="Settings" path="portal/settings" />
+    <Payments key="Payments" path="portal/payments" />
     <NotFound default />
   </Router>
 )
